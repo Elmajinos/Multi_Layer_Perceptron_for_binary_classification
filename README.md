@@ -1,49 +1,69 @@
-PyTorch MLP Training Project
+🧠✨ PyTorch MLP Training Project
 
-This project demonstrates how to build and train a multilayer perceptron (MLP) in PyTorch using two complementary approaches: a manual low-level implementation and a clean high-level nn.Module version.
+This project demonstrates how to build and train a multilayer perceptron (MLP) in PyTorch using both a manual low-level approach and a clean high-level nn.Module implementation.
 
-🚀 Project Structure
-1️⃣ Manual Implementation (Low-Level)
+🚀 Features
 
-Weights and biases created manually with requires_grad=True
+🔧 Manual weight initialization and updates
 
-Forward pass using matrix multiplications, ReLU, and sigmoid
+🧮 Forward pass with ReLU & Sigmoid
 
-Binary Cross-Entropy computed manually
+📉 Binary classification using BCE
 
-Explicit gradient updates using loss.backward()
+🔁 Backpropagation with loss.backward()
 
-Highlights key concepts:
+⚙️ PyTorch autograd: leaf vs non-leaf tensors
 
-leaf vs non-leaf tensors
+🤖 High-level architecture using nn.Module
 
-gradient accumulation
+📊 Training loss visualization
 
-numerical stability (clamping outputs)
+📂 Project Structure
+manual_mlp.py       # Manual implementation with explicit gradient updates
+module_mlp.py       # High-level MLP using nn.Module
+train.py            # Training loop and loss plotting
 
-2️⃣ High-Level Implementation (nn.Module)
+🏗️ Manual MLP (Low-Level)
 
-Model defined with nn.Sequential or a custom nn.Module
+This version shows how neural networks work internally:
 
-Layers automatically registered (nn.Linear)
+🎯 Weights created with requires_grad=True
 
-Standard training loop with:
+🧠 Forward propagation built manually:
+
+torch.mm(), F.relu(), torch.sigmoid()
+
+
+🧾 BCE loss computed manually
+
+🟡 Gradients computed with autograd
+
+🔧 Manual update step:
+
+W -= lr * W.grad
+
+
+This highlights key PyTorch mechanics like gradient flow, accumulation, and numerical stability.
+
+🧱 High-Level MLP (nn.Module)
+
+A cleaner and more scalable implementation:
+
+class MyModel(nn.Module):
+    def __init__(self):
+        super().__init__()
+        self.fc1 = nn.Linear(n_in, n_h1)
+        self.fc2 = nn.Linear(n_h1, n_h2)
+        self.fc3 = nn.Linear(n_h2, n_out)
+
+
+Training follows the standard PyTorch loop:
 
 optimizer.zero_grad()
 loss.backward()
 optimizer.step()
 
 
-Loss handled with nn.BCELoss
-
-Much cleaner and production-ready approach
-
-🎯 Goal
-
-Provide a clear understanding of:
-
-how MLPs work internally,
-
-how PyTorch handles autograd and gradients,
-
-how to transition from manual training code to modern PyTorch practices.
+✔️ Shorter
+✔️ More stable
+✔️ Easier to extend
