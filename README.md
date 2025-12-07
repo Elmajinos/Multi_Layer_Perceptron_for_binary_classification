@@ -29,21 +29,24 @@ This version shows how neural networks work internally:
 
 🎯 Weights created with requires_grad=True
 
-🧠 Forward propagation built manually:
+🧠 Forward propagation built manually using:
 
-torch.mm(), F.relu(), torch.sigmoid()
+torch.mm()
 
+F.relu()
+
+torch.sigmoid()
 
 🧾 BCE loss computed manually
 
-🟡 Gradients computed with autograd
+🟡 Gradients computed with Autograd
 
-🔧 Manual update step:
+🔧 Manual weight update:
 
 W -= lr * W.grad
 
 
-This highlights key PyTorch mechanics like gradient flow, accumulation, and numerical stability.
+This highlights key PyTorch mechanics such as gradient flow, accumulation, and numerical stability.
 
 🧱 High-Level MLP (nn.Module)
 
